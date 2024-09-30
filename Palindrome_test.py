@@ -1,4 +1,12 @@
+"""
+This is an example of one of the Euler problems I have completed. I am particularly happy with this one as I 
+have added the ability to find the highest palindrome for any number input (not just when n = 4) whilst 
+making some clever changes to save a lot of time!
+"""
 def is_palindrome(number):
+    """
+    A simple function to Return True if the input is a palindrom and False if not.
+    """
     string_number = f'{number}'  
     if len(string_number) < 2:
         return True
@@ -13,35 +21,37 @@ def is_palindrome(number):
     return True   
  
 
-def highest_palindrome(number):
+def highest_palindrome(n):
+     """
+     This function takes input n and returns the highest palindrome which is the multiple of two
+     numbers of length n. The plan is to range through second numbers with fixed first number 
+     until we find a palindrome, then we set bounds so that we are not wasting unnecessary time,
+     finally we compare each palindrome so we can find the highest one.
+     """ 
      highest_poss = 9
-     first_lower_bound = 0
-     second_lower_bound = 0
+     lower_bound = 0
      final_result = 0
-     itertations = 1
-     for i in range(1,number):
+     for i in range(1,n): #The highest possible number with n digits is n 9's
          highest_poss += 9*(10**i)
      first_number = highest_poss
-     while first_number > first_lower_bound:
+     while first_number > lower_bound: #If first number falls below lower bound, we have already checked all the follwing multiples and the rest are smaller
       second_number = highest_poss + 1
-      while second_number > second_lower_bound:
+      while second_number > lower_bound:
           second_number += -1
           if second_number == 0:
               break
           if is_palindrome(first_number * second_number) == True:
               temporary_result = first_number * second_number
-              if second_number > second_lower_bound:
-                second_lower_bound = second_number
-                first_lower_bound = second_number
+              if second_number > lower_bound: #We don't need second number to go lower than the lower bound as the result on next iteration will be smaller
+                lower_bound = second_number 
               break
-      if temporary_result > final_result:
+      if temporary_result > final_result: #If the palindrom is higher we can replace the lower one
           final_result = temporary_result
-          print(first_number,second_number)
-      first_number += -1
-      itertations += 1 
-     return final_result
+      first_number += -1 #Iterate again with a lower first number
+     return final_result 
 
-print(highest_palindrome(5))
+print(highest_palindrome(4))
+
 
 
             
