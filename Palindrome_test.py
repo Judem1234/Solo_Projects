@@ -5,7 +5,7 @@ making some clever changes to save a lot of time!
 """
 def is_palindrome(number):
     """
-    A simple function to Return True if the input is a palindrom and False if not.
+    A simple function to Return True if the input is a palindrome and False if not.
     """
     string_number = f'{number}'  
     if len(string_number) < 2:
@@ -34,7 +34,7 @@ def highest_palindrome(n):
      for i in range(1,n): #The highest possible number with n digits is n 9's
          highest_poss += 9*(10**i)
      first_number = highest_poss
-     while first_number > lower_bound: #If first number falls below lower bound, we have already checked all the follwing multiples and the rest are smaller
+     while first_number > lower_bound: #If first number falls below lower bound, we have already checked all the follwing multiples of first number times second number up to lower bound, and the rest are smaller
       second_number = highest_poss + 1
       while second_number > lower_bound:
           second_number += -1
@@ -42,12 +42,12 @@ def highest_palindrome(n):
               break
           if is_palindrome(first_number * second_number) == True:
               temporary_result = first_number * second_number
-              if second_number > lower_bound: #We don't need second number to go lower than the lower bound as the result on next iteration will be smaller
+              if second_number > lower_bound: #We don't need the second number to go lower than the lower bound as the result on next iteration will be smaller
                 lower_bound = second_number 
               break
       if temporary_result > final_result: #If the palindrom is higher we can replace the lower one
           final_result = temporary_result
-      first_number += -1 #Iterate again with a lower first number
+      first_number += -1 #Iterate again with first number minus one
      return final_result 
 
 print(highest_palindrome(4))
