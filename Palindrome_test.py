@@ -1,4 +1,8 @@
 """
+Created on 15/06/2024 12:54
+
+Author: Judem
+
 This is an example of one of the Euler problems I have completed. I am particularly happy with this one as I 
 have added the ability to find the highest palindrome for any number input (not just when n = 4) whilst 
 making some clever changes to save a lot of time!
